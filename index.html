@@ -1,13 +1,242 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="./js/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Резюме</title>
+</head>
+
+<body class="page">
+  <main class="page__content" id="resume">
+    <section class="intro-grid">
+      <img src="./public/photo.jpg" alt="">
+      <div class="grid-element intro-grid__hello">
+        <h6 class="title_medium">Hello 👋🏻 I’m</h6>
+        <div class="intro-grid__name">
+          <h4 class="editable" data-key="name">Violetta Tsvetkova</h4>
+          <p class="editable" data-key="job">Frontend Developer</p>
+        </div>
+      </div>
+      <div class="grid-element intro-grid__langs">
+        <h6 class="section__title">Languages</h6>
+        <ul class="lang-list">
+          <li class="lang-list__item" style="--lvl:100%">
+            <p class="lang-list__name editable" data-key="russian">Russian</p>
+            <div class="lang-list__bar">
+              <div class="lang-list__fill"></div>
+            </div>
+          </li>
+
+          <li class="lang-list__item" style="--lvl:92%">
+            <p class="lang-list__name editable" data-key="english">English</p>
+            <div class="lang-list__bar">
+              <div class="lang-list__fill"></div>
+            </div>
+          </li>
+
+          <li class="lang-list__item" style="--lvl:60%">
+            <p class="lang-list__name editable" data-key="turkish">Turkish</p>
+            <div class="lang-list__bar">
+              <div class="lang-list__fill"></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="experience">
+      <div class="grid-element experience__list">
+        <h6 class="section__title">Experience</h6>
+        <ul class="experience__jobs-list">
+          <li class="experience__card most-recent">
+            <span class="most-recent__label">most recent</span>
+            <h6 class="experience__card-title editable" data-key="jobNeoflex">December 2023 - Present</h6>
+            <div class="experience__card-content">
+              <div class="experience__info">
+                <h5 class="experience__job-title editable" data-key="jobNeoflexTitle">Frontend Developer</h5>
+                <p class="experience__job-company editable" data-key="jobNeoflexFormat">Neoflex Data | Full Time</p>
+              </div>
+              <ul class="experience__features">
+                <li class="editable" data-key="neoflexFeatureOne">developing frontend-part of web applications</li>
+                <li class="editable" data-key="neoflexFeatureTwo">developing backend-part of web applications</li>
+                <li class="editable" data-key="neoflexFeatureThree">code-review</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="experience__card">
+            <h6 class="experience__card-title editable" data-key="jobNda">July 2022 - May 2023</h6>
+            <div class="experience__card-content">
+              <div class="experience__info">
+                <h5 class="experience__job-title editable" data-key="jobNdaTitle">HTML Coder</h5>
+                <p class="experience__job-company editable" data-key="jobNdaFormat">Full Time</p>
+              </div>
+              <ul class="experience__features">
+                <li class="editable" data-key="ndaFeatureOne">writes semantic HTML and responsive CSS</li>
+                <li class="editable" data-key="ndaFeatureTwo">ensure pixel-perfect layouts across browsers/devices</li>
+                <li class="editable" data-key="ndaFeatureThree">optimize for accessibility and performance</li>
+              </ul>
+
+          </li>
+        </ul>
+      </div>
+
+      <div class="grid-element tools">
+        <h6 class="section__title">Tools</h6>
+        <div class="tools__block tools__block_front">
+          <h6 class="tools__label">frontend</h6>
+          <ul class="tools__list">
+            <li>
+              <img src="./public/icons/css3.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/figma.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/html.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/javascript.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/react.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/reduxsvg.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/scss.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/typescript.svg" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="tools__block tools__block_back">
+          <h6 class="tools__label">backend</h6>
+          <ul class="tools__list">
+            <li>
+              <img src="./public/icons/docker.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/nodejs.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/postgresql.svg" />
+            </li>
+            <li>
+              <img src="./public/icons/redis.svg" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="tools__block tools__block_ai">
+          <h6 class="tools__label">artificial intelligence</h6>
+          <ul class="tools__list">
+            <li>
+              <img src="./public/icons/openai.svg" />
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="education">
+      <div class="education__item education__item_left grid-element">
+        <h6 class="section__title">Education</h6>
+        <ul class="education-list">
+          <li class="education-list__item editable active">
+            <div>
+              <h6 data-key="meohiYear">
+                2025 - 2027
+              </h6>
+              <p data-key="IT">Information Security</p>
+              <div class="heart__wrapper">
+                <div class="heart"></div>
+              </div>
+              <ul class="education__hashtag-list">
+                <li data-key="hashIT">#IT</li>
+                <li data-key="hashSecurity">#ITsecutiry</li>
+                <li data-key="hashCyber">#cybersecurity</li>
+                <li data-key="hashOwasp">#owasp</li>
+              </ul>
+              <p data-key="mephi">MEPhI</p>
+            </div>
+          </li>
+          <li class="education-list__item  editable">
+            <div>
+              <h6 data-key="webYear">
+                2022
+              </h6>
+              <p data-key="web">Web Developer</p>
+              <ul class="education__hashtag-list">
+                <li data-key="hashWeb">#web</li>
+                <li data-key="hashJS">#javascript</li>
+                <li data-key="hashReact">#react</li>
+                <li data-key="hashNode">#nodeJS</li>
+              </ul>
+              <p data-key="yandex">Yandex Practicum</p>
+            </div>
+          </li>
+          <li class="education-list__item  editable">
+            <div>
+              <h6 data-key="yaspuYear">
+                2018 - 2023
+              </h6>
+              <p data-key="linguistic">Linguistics</p>
+              <ul class="education__hashtag-list">
+                <li data-key="hashLinguistic">#linguistics</li>
+                <li data-key="hashEnglish">#english</li>
+                <li data-key="hashElt">#elt</li>
+                <li data-key="hashLanguages">#languages</li>
+              </ul>
+              <p data-key="yspu">YSPU</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="education__item education__item_top grid-element">
+        <h6 class="section__title">Interests</h6>
+        <ul class="education__interests-list">
+          <li class="editable" data-key="compScience">computer science</li>
+          <li class="editable" data-key="ling">linguistics</li>
+          <li class="editable" data-key="yofga">yoga</li>
+          <li class="editable" data-key="reading">reading</li>
+          <li class="editable" data-key="gym">gym</li>
+          <li class="editable" data-key="traveling">traveling</li>
+          <li class="editable" data-key="crochet">crochet</li>
+          <li class="editable" data-key="tvShows">TV shows</li>
+        </ul>
+      </div>
+
+      <div class="education__item education__item_bottom grid-element">
+        <h6 class="section__title editable" data-key="letsChat">Let´s chat! I´m ready to work on excinting projects</h6>
+        <p>
+          <a href="mailto:violetta.frontend@yandex.ru" data-key="email">violetta.frontend@yandex.ru</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="controls">
+    <button class="btn btn_primary ripple js-clear-data no-pdf" type="button" title="Сбросить данные">
+      Сбросить
+    </button>
+    <button class="btn btn_primary ripple js-download-pdf no-pdf">Скачать PDF</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+
 </html>
