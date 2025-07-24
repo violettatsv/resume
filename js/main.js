@@ -92,7 +92,7 @@ const STORAGE_KEY = 'cv_data';
     document.body.classList.add('pdf-mode');
 
     const resume = document.getElementById('resume');
-    const canvas = await html2canvas(resume, { scale: 2, backgroundColor: '#fff' });
+    const canvas = await html2canvas(resume, { scale: 2, backgroundColor: '#fff', useCors: true, allowTaint: false });
     const imgData = canvas.toDataURL('image/png');
 
     document.body.classList.remove('pdf-mode');
