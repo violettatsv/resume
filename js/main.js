@@ -1,13 +1,13 @@
 const MARGIN = 15;
-const STORAGE_KEY = 'cv_data';
+const STORAGE_KEY = "cv_data";
 
 (function () {
-  const downloadBtn = document.querySelector('.js-download-pdf');
-  const clearBtn = document.querySelector('.js-clear-data');
-  const editableEls = document.querySelectorAll('.editable');
+  const downloadBtn = document.querySelector(".js-download-pdf");
+  const clearBtn = document.querySelector(".js-clear-data");
+  const editableEls = document.querySelectorAll(".editable");
 
-  document.addEventListener('click', function (e) {
-    const target = e.target.closest('.ripple');
+  document.addEventListener("click", function (e) {
+    const target = e.target.closest(".ripple");
     if (!target) return;
 
     const rect = target.getBoundingClientRect();
@@ -15,31 +15,31 @@ const STORAGE_KEY = 'cv_data';
     const x = e.clientX - rect.left - size / 2;
     const y = e.clientY - rect.top - size / 2;
 
-    const wave = document.createElement('span');
-    wave.className = 'ripple__wave';
-    wave.style.width = wave.style.height = size + 'px';
-    wave.style.left = x + 'px';
-    wave.style.top = y + 'px';
+    const wave = document.createElement("span");
+    wave.className = "ripple__wave";
+    wave.style.width = wave.style.height = size + "px";
+    wave.style.left = x + "px";
+    wave.style.top = y + "px";
     target.appendChild(wave);
-    wave.addEventListener('animationend', () => wave.remove());
+    wave.addEventListener("animationend", () => wave.remove());
   });
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      editableEls.forEach(el => {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      editableEls.forEach((el) => {
         const key = el.dataset.key;
         if (saved[key]) el.textContent = saved[key];
       });
     } catch (e) {
-      console.warn('Local storage parse error', e);
+      console.warn("Local storage parse error", e);
     }
   });
 
   let saveTimer;
   const saveAll = () => {
     const data = {};
-    editableEls.forEach(el => data[el.dataset.key] = el.textContent.trim());
+    editableEls.forEach((el) => (data[el.dataset.key] = el.textContent.trim()));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   };
   const scheduleSave = () => {
@@ -56,49 +56,56 @@ const STORAGE_KEY = 'cv_data';
   const finishEdit = (el) => {
     if (!el.isContentEditable) return;
     el.contentEditable = false;
-    el.classList.remove('u-anim-edit');
+    el.classList.remove("u-anim-edit");
     void el.offsetWidth;
-    el.classList.add('u-anim-edit');
+    el.classList.add("u-anim-edit");
     scheduleSave();
   };
 
-  document.addEventListener('click', (e) => {
-    const el = e.target.closest('.editable');
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest(".editable");
     if (!el) return;
     startEdit(el);
   });
 
-  editableEls.forEach(el => {
-    el.addEventListener('blur', () => finishEdit(el));
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
+  editableEls.forEach((el) => {
+    el.addEventListener("blur", () => finishEdit(el));
+    el.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
         e.preventDefault();
         el.blur();
       }
     });
   });
 
-  clearBtn.addEventListener('click', () => {
+  clearBtn.addEventListener("click", () => {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   });
 
-  downloadBtn.addEventListener('click', async () => {
-    editableEls.forEach(el => {
-      if (el.isContentEditable) { el.blur(); }
+  downloadBtn.addEventListener("click", async () => {
+    editableEls.forEach((el) => {
+      if (el.isContentEditable) {
+        el.blur();
+      }
     });
 
-    editableEls.forEach(el => el.classList.remove('u-anim-edit'));
-    document.body.classList.add('pdf-mode');
+    editableEls.forEach((el) => el.classList.remove("u-anim-edit"));
+    document.body.classList.add("pdf-mode");
 
-    const resume = document.getElementById('resume');
-    const canvas = await html2canvas(resume, { scale: 2, backgroundColor: '#fff', useCors: true, allowTaint: false });
-    const imgData = canvas.toDataURL('image/png');
+    const resume = document.getElementById("resume");
+    const canvas = await html2canvas(resume, {
+      scale: 2,
+      backgroundColor: "#fff",
+      useCors: true,
+      allowTaint: false,
+    });
+    const imgData = canvas.toDataURL("image/png");
 
-    document.body.classList.remove('pdf-mode');
+    document.body.classList.remove("pdf-mode");
 
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdf = new jsPDF("p", "mm", "a4");
 
     const pageW = pdf.internal.pageSize.getWidth();
     const pageH = pdf.internal.pageSize.getHeight();
@@ -120,9 +127,9 @@ const STORAGE_KEY = 'cv_data';
     const x = (pageW - drawW) / 2;
     const y = (pageH - drawH) / 2;
 
-    pdf.addImage(imgData, 'PNG', x, y, drawW, drawH);
+    pdf.addImage(imgData, "PNG", x, y, drawW, drawH);
 
-    pdf.save('resume.pdf');
+    pdf.save("resume.pdf");
   });
 
   const placeCaretAtEnd = (el) => {
